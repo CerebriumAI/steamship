@@ -1,0 +1,80 @@
+{
+	"type": "plugin",
+	"handle": "cerebrium",
+	"version": "0.0.13",
+	"description": "Complete prompts and generate text with Cerebrium.",
+	"author": "",
+	"entrypoint": "src.api.handler",
+	"public": true,
+	"plugin": {
+		"isTrainable": false,
+		"transport": "jsonOverHttp",
+		"type": "tagger"
+	},
+	"build_config": {
+		"ignore": [
+			"tests",
+			"examples"
+		]
+	},
+	"configTemplate": {
+		"cerebrium_api_key": {
+			"type": "string",
+			"description": "An openAI API key to use. If left default, will use Steamship's API key.",
+			"default": ""
+		},
+		"max_words": {
+			"type": "number",
+			"description": "The maximum number of words to generate per request",
+			"default": null
+		},
+		"endpoint": {
+			"type": "string",
+			"description": "The OpenAI model to use.  Can be a pre-existing fine-tuned model.",
+			"default": "text-davinci-003"
+		},
+		"temperature": {
+			"type": "number",
+			"description": "Controls randomness. Lower values produce higher likelihood / more predictable results; higher values produce more variety. Values between 0-1.",
+			"default": 0.4
+		},
+		"echo": {
+			"type": "boolean",
+			"description": "Echo back the prompt in addition to the completion",
+			"default": false
+		},
+		"max_retries": {
+			"type": "number",
+			"description": "Maximum number of retries to make when generating.",
+			"default": 8
+		},
+		"request_timeout": {
+			"type": "number",
+			"description": "Timeout for requests to OpenAI completion API. Default is 600 seconds.",
+			"default": 600
+		}
+	},
+	"steamshipRegistry": {
+		"tagline": "Complete prompts and generate text with OpenAI.",
+		"tagline2": null,
+		"usefulFor": null,
+		"videoUrl": null,
+		"githubUrl": "https://github.com/steamship-plugins/prompt-generation-default",
+		"demoUrl": null,
+		"blogUrl": null,
+		"jupyterUrl": null,
+		"authorGithub": "dkolas",
+		"authorName": "dkolas",
+		"authorEmail": "developers@steamship.com",
+		"authorTwitter": null,
+		"authorUrl": null,
+		"tags": [
+			"NLP",
+			"OpenAI",
+			"GPT-3",
+			"Prompt Completion",
+			"LLM",
+			"GPT"
+		]
+	}
+}
