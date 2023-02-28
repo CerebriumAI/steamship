@@ -129,15 +129,15 @@ class CerebriumPlugin(Tagger):
     ) -> InvocableResponse[BlockAndTagPluginOutput]:
         """Run the text generator against all Blocks of text."""
         file = request.data.file
-        prompts = file.blocks[0].text
-        generated_text = self._generate(prompt=prompts)
-        for block, options in zip(file.blocks, generated_text):
-            for option in options:
+        for block in file.blocks:
+            generated_text = self._generate(prompt=block.text)
+            output = generated_text.get('result', None)
+            if output:
                 block.tags.append(
                     Tag(
                         kind=TagKind.GENERATION,
                         name=GenerationTag.PROMPT_COMPLETION,
-                        value={TagValueKey.STRING_VALUE: option},
+                        value={TagValueKey.STRING_VALUE: output},
                     )
                 )
 
