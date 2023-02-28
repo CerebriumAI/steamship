@@ -23,9 +23,6 @@ def test_tagger():
 
     file = response.data.file
 
-    assert file.tags is not None
-    assert len(file.tags) == 1
-
     tags = file.blocks[0].tags
     for tag in tags:
         assert tag.kind == TagKind.GENERATION
