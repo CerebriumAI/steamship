@@ -2,4 +2,3 @@ steamship==2.3.13
 openai==0.25.0
 tenacity==8.2.0
 tiktoken==0.2.0
-cerebrium==0.4.10
