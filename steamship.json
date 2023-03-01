@@ -1,136 +1,138 @@
 {
-  "type": "plugin",
-  "handle": "cerebrium",
-  "version": "0.0.1",
-  "description": "Deploy LLMs, generative models and custom models using Cerebrium.",
-  "author": "",
-  "entrypoint": "src.api.handler",
-  "public": true,
-  "build_config": {
-    "ignore": [
-      "tests",
-      "examples"
-    ]
-  },
-  "configTemplate": {
-    "cerebrium_api_key": {
-      "type": "string",
-      "description": "A Cerebrium API key to use. If left default, will use Steamship's API key.",
-      "default": ""
-    },
-    "endpoint": {
-      "type": "string",
-      "description": "The URL endpoint of your deployed model on Cerebrium.  Can be a pre-existing or fine-tuned model.",
-      "default": null
-    },
-    "webhook_endpoint": {
-      "type": "string",
-      "description": "The url endpoint you would like us to send the model results to once it has finished.",
-      "default": null
-    },
-    "max_retries": {
-      "type": "number",
-      "description": "Maximum number of retries to make when generating.",
-      "default": true
-    },
-    "request_timeout": {
-      "type": "number",
-      "description": "Timeout for requests to Cerebrium completion API. Default is 600 seconds.",
-      "default": 600
-    },
-    "height": {
-      "type": "number",
-      "description": "The height of the image generation",
-      "default": 512
-    },
-    "width": {
-      "type": "number",
-      "description": "The width of the image generation",
-      "default": 512
-    },
-    "num_inference_steps": {
-      "type": "number",
-      "description": "The number of steps you would like the model to take to generate the image.",
-      "default": 50
-    },
-    "guidance_scale": {
-      "type": "number",
-      "description": "A way to increase the adherence to the conditional signal that guides the generation",
-      "default": 8
-    },
-    "num_images_per_prompt": {
-      "type": "number",
-      "description": "The number of image variations you would like the model to generate.",
-      "default": true
-    },
-    "negative_prompt": {
-      "type": "string",
-      "description": "The negative prompt is a parameter that tells the model what you don’t want to see in the generated images",
-      "default": null
-    },
-    "image": {
-      "type": "string",
-      "description": "This is a base64 encoded string of your initial image.",
-      "default": null
-    },
-    "hf_token": {
-      "type": "string",
-      "description": "This is the token from your HuggingFace profile in order to access your model repo.",
-      "default": null
-    },
-    "model_id": {
-      "type": "string",
-      "description": "This is the Hugging Face id of your model repo.",
-      "default": null
-    },
-    "audio": {
-      "type": "string",
-      "description": "A base64 encoded string of the audio file you would like to transcribe/translate.",
-      "default": null
-    },
-    "max_length": {
-      "type": "number",
-      "description": "The maximum number of words to generate per request",
-      "default": null
-    },
-    "temperature": {
-      "type": "number",
-      "description": "Controls randomness. Lower values produce higher likelihood / more predictable results; higher values produce more variety. Values between 0-1.",
-      "default": 0.4
-    },
-    "echo": {
-      "type": "boolean",
-      "description": "Echo back the prompt in addition to the completion",
-      "default": false
-    }
-  },
-  "steamshipRegistry": {
-    "tagline": "Deploy LLMs, generative models and custom models using Cerebrium.",
-    "tagline2": null,
-    "usefulFor": null,
-    "videoURL": null,
-    "githubURL": null,
-    "demoURL": null,
-    "jupyterURL": null,
-    "authorGithub": "cerebriumai",
-    "authorName": "Michael",
-    "authorEmail": "support@cerebrium.ai",
-    "authorTwitter": null,
-    "authorURL": null,
-    "tags": [
-      "NLP",
-      "Cerebrium",
-      "GPT-3",
-      "Prompt Completion",
-      "LLM",
-      "GPT",
-      "Diffusion Models",
-      "Whisper",
-      "fine-tuning"
-    ]
-  },
-  "plugin": {
-    "type": "tagger",
-    "transport": "jsonOverHttp"
-  }
+	"type": "plugin",
+	"handle": "cerebrium",
+	"version": "0.0.6",
+	"description": "Deploy LLMs, generative models and custom models using Cerebrium.",
+	"author": "",
+	"entrypoint": "src.api.handler",
+	"public": true,
+	"plugin": {
+		"isTrainable": false,
+		"transport": "jsonOverHttp",
+		"type": "tagger"
+	},
+	"build_config": {
+		"ignore": [
+			"tests",
+			"examples"
+		]
+	},
+	"configTemplate": {
+		"cerebrium_api_key": {
+			"type": "string",
+			"description": "A Cerebrium API key to use. If left default, will use Steamship's API key.",
+			"default": ""
+		},
+		"endpoint": {
+			"type": "string",
+			"description": "The URL endpoint of your deployed model on Cerebrium.  Can be a pre-existing or fine-tuned model.",
+			"default": null
+		},
+		"webhook_endpoint": {
+			"type": "string",
+			"description": "The url endpoint you would like us to send the model results to once it has finished.",
+			"default": ""
+		},
+		"max_retries": {
+			"type": "number",
+			"description": "Maximum number of retries to make when generating.",
+			"default": 1
+		},
+		"request_timeout": {
+			"type": "number",
+			"description": "Timeout for requests to Cerebrium completion API. Default is 600 seconds.",
+			"default": 600
+		},
+		"height": {
+			"type": "number",
+			"description": "The height of the image generation",
+			"default": 512
+		},
+		"width": {
+			"type": "number",
+			"description": "The width of the image generation",
+			"default": 512
+		},
+		"num_inference_steps": {
+			"type": "number",
+			"description": "The number of steps you would like the model to take to generate the image.",
+			"default": 50
+		},
+		"guidance_scale": {
+			"type": "number",
+			"description": "A way to increase the adherence to the conditional signal that guides the generation",
+			"default": 8
+		},
+		"num_images_per_prompt": {
+			"type": "number",
+			"description": "The number of image variations you would like the model to generate.",
+			"default": 1
+		},
+		"negative_prompt": {
+			"type": "string",
+			"description": "The negative prompt is a parameter that tells the model what you don\u2019t want to see in the generated images",
+			"default": ""
+		},
+		"image": {
+			"type": "string",
+			"description": "This is a base64 encoded string of your initial image.",
+			"default": ""
+		},
+		"hf_token": {
+			"type": "string",
+			"description": "This is the token from your HuggingFace profile in order to access your model repo.",
+			"default": ""
+		},
+		"model_id": {
+			"type": "string",
+			"description": "This is the Hugging Face id of your model repo.",
+			"default": ""
+		},
+		"audio": {
+			"type": "string",
+			"description": "A base64 encoded string of the audio file you would like to transcribe/translate.",
+			"default": ""
+		},
+		"max_length": {
+			"type": "number",
+			"description": "The maximum number of words to generate per request",
+			"default": 200
+		},
+		"temperature": {
+			"type": "number",
+			"description": "Controls randomness. Lower values produce higher likelihood / more predictable results; higher values produce more variety. Values between 0-1.",
+			"default": 0.4
+		},
+		"echo": {
+			"type": "boolean",
+			"description": "Echo back the prompt in addition to the completion",
+			"default": false
+		}
+	},
+	"steamshipRegistry": {
+		"tagline": "Deploy LLMs, generative models and custom models using Cerebrium.",
+		"tagline2": null,
+		"usefulFor": null,
+		"videoUrl": null,
+		"githubUrl": null,
+		"demoUrl": null,
+		"blogUrl": null,
+		"jupyterUrl": null,
+		"authorGithub": "cerebriumai",
+		"authorName": "Michael",
+		"authorEmail": "support@cerebrium.ai",
+		"authorTwitter": null,
+		"authorUrl": null,
+		"tags": [
+			"NLP",
+			"Cerebrium",
+			"GPT-3",
+			"Prompt Completion",
+			"LLM",
+			"GPT",
+			"Diffusion Models",
+			"Whisper",
+			"fine-tuning"
+		]
+	}
 }

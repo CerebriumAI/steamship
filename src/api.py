@@ -4,7 +4,6 @@ from collections import defaultdict
 from typing import Any, Dict, List, Optional, Type
 import json
 import requests
-from cerebrium import model_api_request
 from pydantic import Field
 from steamship import Steamship, Tag, SteamshipError
 from steamship.data import GenerationTag, TagKind, TagValueKey
@@ -35,7 +34,7 @@ class CerebriumPlugin(Tagger):
         cerebrium_api_key: str = Field("",
                                     description="A Cerebrium API key to use. If left default, will use Steamship's API key.")
         endpoint: str = Field(description="The URL endpoint of your deployed model on Cerebrium.  Can be a pre-existing or fine-tuned model.")
-        webhook_endpoint: Optional[str] = Field(description="The url endpoint you would like us to send the model results to once it has finished.")
+        webhook_endpoint: Optional[str] = Field("", description="The url endpoint you would like us to send the model results to once it has finished.")
         
         max_retries: int = Field(1, description="Maximum number of retries to make when generating.")
         request_timeout: Optional[float] = Field(600,
@@ -47,15 +46,15 @@ class CerebriumPlugin(Tagger):
         num_inference_steps: Optional[int] = Field(50, description="The number of steps you would like the model to take to generate the image.")
         guidance_scale: Optional[int] = Field(8, description="A way to increase the adherence to the conditional signal that guides the generation")
         num_images_per_prompt: Optional[int] = Field(1, description="The number of image variations you would like the model to generate.")
-        negative_prompt: Optional[str] = Field(description="The negative prompt is a parameter that tells the model what you don’t want to see in the generated images")
-        image: Optional[str] = Field(description="This is a base64 encoded string of your initial image.")
-        hf_token: Optional[str] = Field(description="This is the token from your HuggingFace profile in order to access your model repo.")
-        model_id: Optional[str] = Field(description="This is the Hugging Face id of your model repo.")
+        negative_prompt: Optional[str] = Field("", description="The negative prompt is a parameter that tells the model what you don’t want to see in the generated images")
+        image: Optional[str] = Field("", description="This is a base64 encoded string of your initial image.")
+        hf_token: Optional[str] = Field("", description="This is the token from your HuggingFace profile in order to access your model repo.")
+        model_id: Optional[str] = Field("", description="This is the Hugging Face id of your model repo.")
         
 
         #Language Models
-        audio: Optional[str] = Field(description="A base64 encoded string of the audio file you would like to transcribe/translate.")
-        max_length: Optional[int] = Field(description="The maximum number of words to generate per request")
+        audio: Optional[str] = Field("", description="A base64 encoded string of the audio file you would like to transcribe/translate.")
+        max_length: Optional[int] = Field(200, description="The maximum number of words to generate per request")
         temperature: Optional[float] = Field(0.4,
                                              description="Controls randomness. Lower values produce higher likelihood / more predictable results; higher values produce more variety. Values between 0-1.")
         echo: Optional[bool] = Field(False, description="Echo back the prompt in addition to the completion")
